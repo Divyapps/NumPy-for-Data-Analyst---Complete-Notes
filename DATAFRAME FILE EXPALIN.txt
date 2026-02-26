@@ -1,0 +1,149 @@
+We use seed() to ensure that random numbers are
+ reproducible so that results remain 
+consistent across runs.
+seed() fixes the starting point of random number generation
+From where do we get these “random” numbers?
+From a computer algorithm (not truly random)
+
+np.random.seed(55)
+👉 Fixes the starting point of the random number generator
+
+np.random.randn(3)
+👉 Generates 3 random numbers from a standard normal distribution
+
+Mean = 0
+
+Standard deviation = 1
+
+So NumPy always produces the same sequence for seed 55.
+
+55 has no special meaning
+It is just an arbitrary number chosen by the programmer.
+
+🔹 Important Truth
+
+You can use ANY integer as a seed
+
+Examples:
+
+np.random.seed(1)
+np.random.seed(10)
+np.random.seed(55)
+np.random.seed(101)
+
+df.W is attribute-style column access in a Pandas DataFrame.
+
+It is a shortcut for accessing a column.
+
+First, understand what df[['W','Z']] means
+
+[['W','Z']] → list of column names
+
+Selecting multiple columns from a DataFrame
+
+📌 Even if you select one column using a list, Pandas returns a DataFrame
+
+What does df.drop('new', axis=1) do?
+
+It removes a column named 'new' from the DataFrame.
+
+new'
+
+Name of the column to remove
+
+2️⃣ axis=1
+
+axis=0 → rows
+
+axis=1 → columns
+
+📌 Since 'new' is a column, we use axis=1
+
+
+drop() returns a new DataFrame
+
+
+df.loc['A'] selects the row with index label 'A' from the DataFrame.
+
+What is Conditional Selection?
+Conditional selection allows you to pick rows from a DataFrame where a condition is true.
+•	Example: Select all rows where a column value is greater than 0.
+
+
+
+What does df.reset_index() do?
+
+df.reset_index() resets the index of a DataFrame back to the default integer index (0, 1, 2, …).
+
+🔹 Why we use it?
+
+Sometimes we set a custom index (like 'A', 'B', 'C')
+
+After filtering or modifying rows, the index may become non-sequential
+
+reset_index() resets it to default integers
+
+Sure! Let’s create a step-by-step example showing before and after setting/resetting an index.
+ This is perfect for students and notes.
+
+import pandas as pd
+
+# Original Data
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['Delhi', 'Mumbai', 'Chennai']
+})
+
+print("Original DataFrame:")
+print(df)
+
+
+df.set_index('Name', inplace=True)
+print("\nAfter setting 'Name' as index:")
+print(df)
+
+df_reset = df.reset_index()
+print("\nAfter resetting index:")
+print(df_reset)
+
+
+df.reset_index(drop=True, inplace=True)
+print("\nReset index with drop=True:")
+print(df)
+
+| Operation                | Result                                      |
+| ------------------------ | ------------------------------------------- |
+| Original                 | Default integer index                       |
+| `set_index('Name')`      | Custom index (`Name`)                       |
+| `reset_index()`          | Old index becomes column, new default index |
+| `reset_index(drop=True)` | Old index removed, default index only       |
+
+df.info() is a quick way to get a summary of a DataFrame.
+
+It is very useful to understand the structure of your data.
+
+| Column | Non-Null Count | Dtype  | Meaning      |
+| ------ | -------------- | ------ | ------------ |
+| Name   | 3 non-null     | object | Strings/text |
+| Age    | 3 non-null     | int64  | Integers     |
+| City   | 3 non-null     | object | Strings/text |
+
+
+df.dropna() removes rows with missing values (NaN) from a DataFrame.
+
+It is used to clean your dataset before analysis.
+Command	Meaning
+df.dropna()	Drop rows with any NaN
+df.dropna(axis=1)	Drop columns with any NaN
+df.dropna(how='all')	Drop only if all values are NaN
+df.dropna(thresh=n)	Keep if at least n non-NaN values
+df.dropna(thresh=2)-------
+
+
+The .mean() function calculates the average of numeric values. 
+t is one of the aggregation functions used for summarizing data.
+
+
+
+
